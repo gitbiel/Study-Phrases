@@ -1,7 +1,56 @@
 body {
-    background-color: #1F123D;
+  margin: 0;
 }
 
-.title {
-    color: #FFFFFF;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #241770;
+  color: #ffffff;
+  height: 60px;
+  font-size: 30px;
+  padding: 14px;
+}
+
+.content-main {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f123d;
+  height: 90vh;
+  padding: 14px;
+}
+
+.content-main > h1 {
+  color: #ffffff;
+  margin-top: 0;
+  padding-top: 80px;
+}
+
+.content-main > textarea {
+  resize: none;
+  height: 80px;
+  font-size: 22px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.content-main > label {
+  color: #FFFFFF;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+.content-main > div {
+  color: #FFFFFF;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+.content-main > button {
+  background-color: #6E60BD;
+  color: #FFFFFF;
+  border: none;
+  height: 50px;
+  font-size: 22px;
 }

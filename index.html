@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 class="title">Cadastrar frase</h1>
+  <header class="header">
+    <span>Study Phrases</span>
+    <svg width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M25.0391 0H0.960544C0.825409 0 0.714844 0.113216 0.714844 0.251591V2.26432C0.714844 2.40269 0.825409 2.51591 0.960544 2.51591H25.0391C25.1743 2.51591 25.2848 2.40269 25.2848 2.26432V0.251591C25.2848 0.113216 25.1743 0 25.0391 0ZM25.0391 19.6241H0.960544C0.825409 19.6241 0.714844 19.7373 0.714844 19.8757V21.8884C0.714844 22.0268 0.825409 22.14 0.960544 22.14H25.0391C25.1743 22.14 25.2848 22.0268 25.2848 21.8884V19.8757C25.2848 19.7373 25.1743 19.6241 25.0391 19.6241ZM25.0391 9.81205H0.960544C0.825409 9.81205 0.714844 9.92526 0.714844 10.0636V12.0764C0.714844 12.2147 0.825409 12.328 0.960544 12.328H25.0391C25.1743 12.328 25.2848 12.2147 25.2848 12.0764V10.0636C25.2848 9.92526 25.1743 9.81205 25.0391 9.81205Z" fill="white"/>
+    </svg>
+  </header>
+  <main class="content-main">
+    <h1>Cadastrar frase</h1>
+    <textarea placeholder="Frase"></textarea>
+    <label>Prioridade</label>
+    <div>
+      <input type="radio" name="prioridade">
+      <label>Baixa</label>
+      <input type="radio" checked name="prioridade">
+      <label>Média</label>
+      <input type="radio" name="prioridade">
+      <label>Alta</label>
+    </div>
+    <button>Criar</button>
+  </main>
 </body>
 </html>
