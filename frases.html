@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases cadastradas</title>
+    <link rel="stylesheet" href="frases.css">
+    <script src="frases.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <span>Study Phrases</span>
+    <div onclick="openModal()" id="menu" class="menu-burguer">
+      <div id="line1"></div>
+      <div id="line2"></div>
+      <div id="line3"></div>
+    </div>  
+    <svg onclick="closeModal()" id="x" class="x" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.5028 13L22.12 3.9203C22.2477 3.7694 22.1403 3.54016 21.943 3.54016H19.6274C19.491 3.54016 19.3604 3.6011 19.2704 3.70556L12.9881 11.1951L6.7057 3.70556C6.61865 3.6011 6.48807 3.54016 6.34878 3.54016H4.03316C3.83584 3.54016 3.72847 3.7694 3.85615 3.9203L11.4733 13L3.85615 22.0797C3.82755 22.1133 3.8092 22.1544 3.80328 22.1982C3.79736 22.2419 3.80412 22.2865 3.82276 22.3265C3.84139 22.3665 3.87113 22.4004 3.90842 22.424C3.94572 22.4476 3.98901 22.46 4.03316 22.4598H6.34878C6.48517 22.4598 6.61575 22.3989 6.7057 22.2944L12.9881 14.8049L19.2704 22.2944C19.3575 22.3989 19.4881 22.4598 19.6274 22.4598H21.943C22.1403 22.4598 22.2477 22.2306 22.12 22.0797L14.5028 13Z" fill="#1F123D"/>
+    </svg>
+    <nav id="nav">
+      <ul>
+        <li><a href="cadastrar.html">Criar frases</a></li>
+        <li>Frases</a></li>
+        <!-- <li><a href=""></a> Estudar</li> -->
+      </ul>
+    </nav>
+  </header>
+  <main class="content-main">
+    <h1>Frases cadastradas</h1>
+
+    <span class="filter">Filtros
+      <svg onclick="openFilter()" id="svg" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.95663 17.1955C5.95663 17.6405 6.31361 18 6.75607 18H13.3527C13.7952 18 14.1522 17.6405 14.1522 17.1955V12.2682H5.95663V17.1955ZM19.3083 0H0.800484C0.184562 0 -0.200074 0.671229 0.109144 1.2067L5.67255 10.6592H14.4413L20.0047 1.2067C20.3089 0.671229 19.9242 0 19.3083 0Z" fill="white"/>
+      </svg>
+    </span>
+
+    <input class="survey" placeholder="Pesquisar" type="text">
+    <div>
+      <svg class="lupa" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.7626 19.4096L14.3861 13.0331C15.3756 11.7538 15.9109 10.1897 15.9109 8.54466C15.9109 6.57546 15.1423 4.72904 13.7526 3.33685C12.3629 1.94466 10.5115 1.17859 8.54478 1.17859C6.57804 1.17859 4.7267 1.94712 3.33697 3.33685C1.94478 4.72658 1.17871 6.57546 1.17871 8.54466C1.17871 10.5114 1.94724 12.3627 3.33697 13.7525C4.7267 15.1447 6.57559 15.9107 8.54478 15.9107C10.1899 15.9107 11.7515 15.3755 13.0307 14.3884L19.4073 20.7625C19.426 20.7812 19.4482 20.7961 19.4726 20.8062C19.4971 20.8163 19.5232 20.8215 19.5497 20.8215C19.5761 20.8215 19.6023 20.8163 19.6268 20.8062C19.6512 20.7961 19.6734 20.7812 19.6921 20.7625L20.7626 19.6944C20.7813 19.6757 20.7962 19.6535 20.8063 19.6291C20.8164 19.6047 20.8217 19.5785 20.8217 19.552C20.8217 19.5256 20.8164 19.4994 20.8063 19.4749C20.7962 19.4505 20.7813 19.4283 20.7626 19.4096ZM12.4341 12.4339C11.393 13.4726 10.0131 14.0447 8.54478 14.0447C7.07648 14.0447 5.69657 13.4726 4.6555 12.4339C3.61688 11.3929 3.04478 10.013 3.04478 8.54466C3.04478 7.07636 3.61688 5.69399 4.6555 4.65537C5.69657 3.61676 7.07648 3.04466 8.54478 3.04466C10.0131 3.04466 11.3955 3.6143 12.4341 4.65537C13.4727 5.69645 14.0448 7.07636 14.0448 8.54466C14.0448 10.013 13.4727 11.3953 12.4341 12.4339Z" fill="#49407D"/>
+      </svg>
+    </div>
+      
+      
+    <label>Prioridade</label>
+    <div>
+      <input class="checked" id="radio1" type="radio" name="prioridade">
+      <label for="radio1">Baixa</label>
+      <input class="checked" id="radio2" type="radio" checked name="prioridade">
+      <label for="radio2">Média</label>
+      <input class="checked" id="radio3" type="radio" name="prioridade">
+      <label for="radio3">Alta</label>
+    </div>
+    <button>Aplicar</button>
+    
+  </main>
+</body>
+</html>

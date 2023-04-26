@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Frase</title>
+    <link rel="stylesheet" href="cadastrar.css">
+    <script src="cadastrar.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <span>Study Phrases</span>
+    <div onclick="openModal()" id="menu" class="menu-burguer">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>  
+    <svg onclick="closeModal()" id="close-menu" class="close-menu" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.5028 13L22.12 3.9203C22.2477 3.7694 22.1403 3.54016 21.943 3.54016H19.6274C19.491 3.54016 19.3604 3.6011 19.2704 3.70556L12.9881 11.1951L6.7057 3.70556C6.61865 3.6011 6.48807 3.54016 6.34878 3.54016H4.03316C3.83584 3.54016 3.72847 3.7694 3.85615 3.9203L11.4733 13L3.85615 22.0797C3.82755 22.1133 3.8092 22.1544 3.80328 22.1982C3.79736 22.2419 3.80412 22.2865 3.82276 22.3265C3.84139 22.3665 3.87113 22.4004 3.90842 22.424C3.94572 22.4476 3.98901 22.46 4.03316 22.4598H6.34878C6.48517 22.4598 6.61575 22.3989 6.7057 22.2944L12.9881 14.8049L19.2704 22.2944C19.3575 22.3989 19.4881 22.4598 19.6274 22.4598H21.943C22.1403 22.4598 22.2477 22.2306 22.12 22.0797L14.5028 13Z" fill="#1F123D"/>
+    </svg>
+    <nav id="nav">
+      <ul>
+        <li><a href=""></a> Criar frases</li>
+        <li><a href="frases.html">Frases</a></li>
+        <!-- <li><a href=""></a> Estudar</li> -->
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content-main">
+    <h1>Cadastrar frase</h1>
+    <textarea placeholder="Frase"></textarea>
+    <label>Prioridade</label>
+    <div>
+      <input id="radio1" type="radio" name="prioridade">
+      <label for="radio1">Baixa</label>
+      <input id="radio2" type="radio" name="prioridade" checked>
+      <label for="radio2">Média</label>
+      <input id="radio3" type="radio" name="prioridade">
+      <label for="radio3">Alta</label>
+    </div>
+    <button>Criar</button>
+  </main>
+</body>
+</html>
