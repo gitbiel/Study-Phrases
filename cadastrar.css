@@ -47,7 +47,6 @@ header nav {
   height: calc(100vh - 100px);
   background-color: #FFF;
   padding-top: 100px;
-  transition-duration: 2s;
 }
 
 header li {
