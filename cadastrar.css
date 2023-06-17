@@ -85,21 +85,22 @@ header li:nth-child(1) {
   font-weight: 600;
 }
 
-.content-main > textarea {
+.textarea {
+  width: -webkit-fill-available;
   resize: none;
   height: 80px;
   font-size: 22px;
   padding: 12px;
   margin-bottom: 20px;
-}
+} 
 
-.content-main > label {
+.label {
   color: #ffffff;
   font-size: 25px;
   padding-bottom: 20px;
 }
 
-.content-main > div {
+.container-radio {
   color: #ffffff;
   font-size: 25px;
   padding-bottom: 20px;
@@ -118,12 +119,13 @@ div input[type="radio"]:checked {
   background-image: radial-gradient(#7545c4 50%, #ffffff 60%);
 }
 
-.content-main > button {
+.btnCriar {
+  width: 100%;
   background-color: #6e60bd;
   color: #ffffff;
   border: none;
   height: 50px;
   font-size: 22px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: not-allowed;
 }

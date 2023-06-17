@@ -218,7 +218,6 @@ div input[type="radio"]:checked {
 .phrases_settings {
   height: 30px;
   width: 10px;
-  cursor: pointer;
 }
 
 #blue {
@@ -230,7 +229,7 @@ div input[type="radio"]:checked {
 }
 
 .content-settings {
-  display: block;
+  display: none;
   list-style: none;
   background-color: #FFF;
   width: 182px;
@@ -242,6 +241,11 @@ div input[type="radio"]:checked {
   -moz-box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
 }
+
+.phrases_line.is-visible .content-settings {
+  display: block;
+}
+
 .content-settings_line {
   margin-left: 5px;
   height: 32px;
@@ -268,4 +272,5 @@ div input[type="radio"]:checked {
 .container-line-options_btn-settings {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }

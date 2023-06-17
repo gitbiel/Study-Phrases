@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Frase</title>
     <link rel="stylesheet" href="cadastrar.css">
+    <script src="./http/client.js" defer></script>
     <script src="cadastrar.js" defer></script>
 </head>
 <body>
@@ -30,17 +31,19 @@
 
   <main class="content-main">
     <h1>Cadastrar frase</h1>
-    <textarea placeholder="Frase"></textarea>
-    <label>Prioridade</label>
-    <div>
-      <input id="radio1" type="radio" name="prioridade">
-      <label for="radio1">Baixa</label>
-      <input id="radio2" type="radio" name="prioridade" checked>
-      <label for="radio2">Média</label>
-      <input id="radio3" type="radio" name="prioridade">
-      <label for="radio3">Alta</label>
-    </div>
-    <button>Criar</button>
+    <form id="form" class="form">
+      <textarea id="textarea" class="textarea"placeholder="Frase"></textarea>
+      <label class="label">Prioridade</label>
+      <div class="container-radio">
+        <input id="radio1" type="radio" name="prioridade" value="low">
+        <label for="radio1">Baixa</label>
+        <input id="radio2" type="radio" name="prioridade" value="medium" >
+        <label for="radio2">Média</label>
+        <input id="radio3" type="radio" name="prioridade" value="high">
+        <label for="radio3">Alta</label>
+      </div>
+      <button  id="btnCriar" class="btnCriar" onclick="pegarDados()">Criar</button>
+    </form>
   </main>
 </body>
 </html>

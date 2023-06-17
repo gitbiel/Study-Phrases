@@ -4,10 +4,37 @@ const closeMenu = document.getElementById("close-menu");
 const pesquisar = document.getElementById("pesquisar");
 const priority = document.getElementById("priority");
 const containerInputs = document.getElementById("container-inputs");
-const btn = document.getElementById("btn");
+const btnAplicar = document.getElementById("btnAplicar");
 const containerLupa = document.getElementById("container-lupa");
 const whiteFilter = document.getElementById("whiteFilter");
-const purpleFilter =document.getElementById("purpleFilter");
+const purpleFilter = document.getElementById("purpleFilter");
+const phrasesLine = document.getElementById("1")
+const phrasesList = document.querySelector("ul.phrases")
+
+function createItem({ id, phrase, priority }) {
+  const li = document.createElement('li')
+  li.id = id
+  li.innerHTML = phrase
+  li.classList.add('phrases_line')
+
+  return li
+}
+
+async function getPhrases() {
+ try {
+  const phrases = await listPhrases()
+  if(phrases.length > 0) {
+    phrases.forEach(item => {
+      const { id, phrase, priority } = item
+      const li = createItem({ id, phrase, priority })
+      phrasesList.append(li)
+    })
+  }
+ } catch (error) {
+  
+ }
+}
+getPhrases()
 
 const frasesCadastradas = {
   totalItems: 6,
@@ -45,7 +72,7 @@ function openFilter() {
   pesquisar.style.display = "flex";
   priority.style.display = "flex";
   containerInputs.style.display = "block";
-  btn.style.display = "block";
+  btnAplicar.style.display = "block";
   containerLupa.style.display = "flex";
   whiteFilter.style.display = "none";
   purpleFilter.style.display = "flex";
@@ -55,8 +82,18 @@ function closedFilter() {
   pesquisar.style.display = "none";
   priority.style.display = "none";
   containerInputs.style.display = "none";
-  btn.style.display = "none";
+  btnAplicar.style.display = "none";
   containerLupa.style.display = "none";
   purpleFilter.style.display = "none"
   whiteFilter.style.display = "flex";
 }
+
+
+function openSettings(e) {
+  phrasesLine.classList.contains("is-visible")
+  ? phrasesLine.classList.remove('is-visible')
+	: phrasesLine.classList.add('is-visible')
+}
+
+const btn = document.getElementById("btn")
+btn.addEventListener("click", openSettings)
