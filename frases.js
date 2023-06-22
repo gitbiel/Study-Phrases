@@ -61,9 +61,9 @@ function createItem({ id, phrase, priority }) {
   btnDeletePhrase.innerHTML = 'Excluir frase'
   btnDeletePhrase.classList.add('modal-button')
   liDelete.append(btnDeletePhrase)
-  // liDelete.addEventListener('click', deletePhrase({
-  //   phraseId: id
-  // }))
+  liDelete.addEventListener('click', deletePhrase({
+    phraseId: id
+  }))
 
   const liChangePriority = document.createElement('li')
   const btnChangePriority = document.createElement('button')
@@ -83,10 +83,6 @@ function createItem({ id, phrase, priority }) {
 
   return li
 }
-
-
-const deleteButtons = document.getElementsByClassName('modal-button');
-console.log(deleteButtons)
 
 async function getPhrases() {
  try {

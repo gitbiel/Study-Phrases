@@ -127,5 +127,9 @@ div input[type="radio"]:checked {
   height: 50px;
   font-size: 22px;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.btnCriar:disabled {
   cursor: not-allowed;
 }
