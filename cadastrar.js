@@ -34,8 +34,6 @@ async function pegarDados() {
   }
 }
 
-
-
 let isOpen = false
 
 function openModal() {

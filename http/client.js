@@ -22,14 +22,15 @@ function client({ method, body = null, path }) {
 
 }
 
-
-
 async function createPhrase({ phrase, priority }) {
-  console.log('==123')
   await client({ method: 'POST', body: { phrase, priority }, path: 'phrase' })
 }
 
 async function listPhrases() {
   return await client({ method: 'GET', path: 'phrase' })
+}
+
+async function deletePhrase({ phraseId }) {
+  return await client({ method: 'DELETE', path:`phrase/${ phraseId }`})
 }
 

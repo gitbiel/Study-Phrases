@@ -8,17 +8,85 @@ const btnAplicar = document.getElementById("btnAplicar");
 const containerLupa = document.getElementById("container-lupa");
 const whiteFilter = document.getElementById("whiteFilter");
 const purpleFilter = document.getElementById("purpleFilter");
-const phrasesLine = document.getElementById("1")
 const phrasesList = document.querySelector("ul.phrases")
 
 function createItem({ id, phrase, priority }) {
   const li = document.createElement('li')
   li.id = id
-  li.innerHTML = phrase
   li.classList.add('phrases_line')
+
+  const divContainer = document.createElement('div')
+  divContainer.classList.add("divContainer")
+  li.append(divContainer)
+  
+  const prioridade = document.createElement('div')
+  prioridade.classList.add('phrases_priority')
+  li.append(prioridade)
+  
+  const paragraph = document.createElement('p')
+  paragraph.innerHTML = phrase
+  li.append(paragraph)
+  
+  divContainer.append(prioridade)
+  divContainer.append(paragraph)
+  
+  const btn = document.createElement('button')
+  btn.classList.add('ellipsis-button')
+  btn.addEventListener('click', openSettings)
+
+  const dot1 = document.createElement('span')
+  const dot2 = document.createElement('span')
+  const dot3 = document.createElement('span')
+  dot1.classList.add("dots")
+  dot2.classList.add("dots")
+  dot3.classList.add("dots")
+  btn.append(dot1)  
+  btn.append(dot2)  
+  btn.append(dot3)  
+
+  li.append(btn)
+
+  const modal = document.createElement('ul')
+  modal.classList.add('modal')
+  li.append(modal)
+
+  function openSettings() {
+    modal.classList.contains("is-visible")
+    ? modal.classList.remove('is-visible')
+    : modal.classList.add('is-visible')
+  }
+
+  const liDelete = document.createElement('li')
+  const btnDeletePhrase = document.createElement('button')
+  btnDeletePhrase.innerHTML = 'Excluir frase'
+  btnDeletePhrase.classList.add('modal-button')
+  liDelete.append(btnDeletePhrase)
+  // liDelete.addEventListener('click', deletePhrase({
+  //   phraseId: id
+  // }))
+
+  const liChangePriority = document.createElement('li')
+  const btnChangePriority = document.createElement('button')
+  btnChangePriority.innerHTML = 'Mudar prioridade'
+  btnChangePriority.classList.add('modal-button')
+  liChangePriority.append(btnChangePriority)
+
+  const liEdit = document.createElement('li')
+  const btnEdit = document.createElement('button')
+  btnEdit.innerHTML = 'Editar'
+  btnEdit.classList.add('modal-button')
+  liEdit.append(btnEdit)
+
+  modal.append(liDelete)
+  modal.append(liChangePriority)
+  modal.append(liEdit)
 
   return li
 }
+
+
+const deleteButtons = document.getElementsByClassName('modal-button');
+console.log(deleteButtons)
 
 async function getPhrases() {
  try {
@@ -36,17 +104,6 @@ async function getPhrases() {
 }
 getPhrases()
 
-const frasesCadastradas = {
-  totalItems: 6,
-  items: [
-    { priority: 0, phrase: 'I have a dog.', id: 'uuid1' },
-    { priority: 1, phrase: 'My brother is very strong..', id: 'uuid2' },
-    { priority: 2, phrase: 'My father is about 5 months without work.', id: 'uuid3' },
-    { priority: 0, phrase: 'My favorty color is black.', id: 'uuid4' },
-    { priority: 1, phrase: 'I have to study every day.', id: 'uuid5' },
-    { priority: 2, phrase: 'I have a cat.', id: 'uuid1', id: 'uuid6 ' },
-  ],
-}
 
 let isOpen = false
 
@@ -89,11 +146,4 @@ function closedFilter() {
 }
 
 
-function openSettings(e) {
-  phrasesLine.classList.contains("is-visible")
-  ? phrasesLine.classList.remove('is-visible')
-	: phrasesLine.classList.add('is-visible')
-}
 
-const btn = document.getElementById("btn")
-btn.addEventListener("click", openSettings)

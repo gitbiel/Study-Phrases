@@ -181,14 +181,15 @@ div input[type="radio"]:checked {
   padding: 0;
 }
 
-
 .phrases_line {
+  color: #FFF;
   height: 50px;
   list-style: none;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between;
 }
 
 .phrases_container-color {
@@ -205,29 +206,6 @@ div input[type="radio"]:checked {
   margin-right: 20px;
 }
 
-.phrases_paragraph {
-  color: #FFF;
-  font-weight: 400;
-  width: 100%;
-}
-
-.practice {
-  margin-top: 40px;
-}
-
-.phrases_settings {
-  height: 30px;
-  width: 10px;
-}
-
-#blue {
-  background-color: #45C4B0;
-}
-
-#yellow {
-  background-color: #BDB160;
-}
-
 .content-settings {
   display: none;
   list-style: none;
@@ -242,10 +220,6 @@ div input[type="radio"]:checked {
   box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
 }
 
-.phrases_line.is-visible .content-settings {
-  display: block;
-}
-
 .content-settings_line {
   margin-left: 5px;
   height: 32px;
@@ -254,17 +228,6 @@ div input[type="radio"]:checked {
   align-items: center;
 }
 
-.svg-delete {
-  padding-right: 20px;
-}
-
-.svg-changePriority {
-  padding-right: 18px;
-}
-
-.svg-edit {
-  padding-right: 23px;
-}
 .container-line-options {
   display: flex;
 }
@@ -273,4 +236,65 @@ div input[type="radio"]:checked {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.ellipsis-button {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dots {
+  width: 6px;
+  height: 6px;
+  background-color: white;  
+  border-radius: 50%;
+}
+
+.divContainer {
+  display: flex;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  right: 2%;
+  top: 100%;
+  z-index: 0;
+  background: #fff;
+  padding: 0;
+  list-style: none;
+  width: 160px;
+
+  -webkit-box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
+}
+
+.modal.is-visible {
+  display: block;
+}
+
+.modal-button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.modal-button:hover {
+  background-color: #e4e4e4;
 }
