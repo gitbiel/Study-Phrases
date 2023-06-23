@@ -101,26 +101,6 @@ async function getPhrases() {
 getPhrases()
 
 
-let isOpen = false
-
-function openModal() {
-  isOpen === false ? isOpen = true: isOpen = false;
-  if(isOpen === true) {
-    nav.style.display = "flex";
-    menu.style.display = "none";
-    closeMenu.style.display = "block";
-  }
-}
-
-function closeModal() {
-  isOpen === false ? isOpen = true: isOpen = false;
-  if(isOpen === false) {
-    nav.style.display = "none";
-    menu.style.display = "block";
-    closeMenu.style.display = "none";
-  }
-}
-
 function openFilter() {
   pesquisar.style.display = "flex";
   priority.style.display = "flex";
@@ -140,6 +120,24 @@ function closedFilter() {
   purpleFilter.style.display = "none"
   whiteFilter.style.display = "flex";
 }
+
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const overlay = document.querySelector('.overlay');
+
+hamburgerMenu.addEventListener('click', function() {
+  hamburgerMenu.classList.toggle('open');
+  overlay.classList.toggle('open');
+});
+
+const closeBtn = document.querySelector('.close-btn');
+
+closeBtn.addEventListener('click', function() {
+  hamburgerMenu.classList.remove('open');
+  overlay.classList.remove('open');
+});
+
+
+
 
 
 

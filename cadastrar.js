@@ -71,22 +71,19 @@ async function pegarDados() {
   }
 }
 
-let isOpen = false
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const overlay = document.querySelector('.overlay');
 
-function openModal() {
-  isOpen === false ? isOpen = true: isOpen = false;
-  if(isOpen === true) {
-    nav.style.display = "flex";
-    menu.style.display = "none";
-    closeMenu.style.display = "block"
-  }
-}
+hamburgerMenu.addEventListener('click', function() {
+  hamburgerMenu.classList.toggle('open');
+  overlay.classList.toggle('open');
+});
 
-function closeModal() {
-  isOpen === false ? isOpen = true: isOpen = false;
-  if(isOpen === false) {
-    nav.style.display = "none";
-    menu.style.display = "block";
-    closeMenu.style.display = "none"
-  }
-}
+const closeBtn = document.querySelector('.close-btn');
+
+closeBtn.addEventListener('click', function() {
+  hamburgerMenu.classList.remove('open');
+  overlay.classList.remove('open');
+});
+
+

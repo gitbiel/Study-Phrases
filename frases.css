@@ -4,74 +4,97 @@ body {
   margin: 0;
   padding: 0;
   font-family: inter;
+  overflow-y: hidden;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 8vh;
   background-color: #241770;
-  color: #FFF;
-  height: 60px;
-  font-size: 30px;
-  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: white;
 }
 
-header li {
-  font-size: 20px;
-  color: #000;
-  list-style: none; 
-  margin-bottom: 10px;
+.title {
+  margin: 0;
 }
 
-header li > a {
-  font-size: 20px;
+.hamburger-menu {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  transform: scaleX(0);
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  background-color: white;
+  z-index: 1;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.overlay.open {
+  transform: translateX(0);
+}
+
+.close-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 50px 20px;
+}
+
+.menu li {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hamburger-menu.open span {
+  background-color: black;
+}
+
+.currentScreen {
+  border-bottom: 3px solid black;
+  width: 60px;
+}
+
+.li {
   color: #000;
   text-decoration: none;
-  margin-bottom: 10px;
-}
-
-header li:nth-child(2) {
-  font-size: 20px;
-  color: #000;
-  list-style: none; 
-  border-bottom: solid 3px black;
-}
-
-header nav {
-  display: none;
-  color: #000;
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: 0;
-  width: 60%;
-  height: calc(100vh - 100px);
-  background-color: #FFF;
-  padding-top: 100px;
-  -webkit-box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.75);
-}
-
-.menu-burguer  {
-  cursor: pointer;
-  z-index: 1;
-}
-
-.menu-burguer div {
-  display: block;
-  width: 32px;
-  height: 2px;
-  background: #FFF;
-  margin: 8px;
-}
-
-.close-menu {
-  margin: 10px;
-  display: none;
-  z-index: 2;
-  cursor: pointer;
 }
 
 .content-main {
