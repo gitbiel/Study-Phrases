@@ -34,3 +34,6 @@ async function deletePhrase({ phraseId }) {
   return await client({ method: 'DELETE', path:`phrase/${ phraseId }`})
 }
 
+// async function editPhrase({ phrase, priority, phraseId }) {
+//   return await client({ method: 'PUT', body: { phrase, priority }, path:`phrase/${ phraseId }`})
+// }

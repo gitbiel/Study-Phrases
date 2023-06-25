@@ -21,8 +21,15 @@ function createItem({ id, phrase, priority }) {
   
   const prioridade = document.createElement('div')
   prioridade.classList.add('phrases_priority')
+  if(priority === 'low') {
+   prioridade.classList.add('priorityLow') 
+  } if(priority === 'medium') {
+    prioridade.classList.add('priorityMedium') 
+   } if(priority === 'high') {
+    prioridade.classList.add('priorityHigh') 
+   }
   li.append(prioridade)
-  
+
   const paragraph = document.createElement('p')
   paragraph.innerHTML = phrase
   li.append(paragraph)
@@ -56,34 +63,112 @@ function createItem({ id, phrase, priority }) {
     : modal.classList.add('is-visible')
   }
 
+  document.addEventListener('click', function(event) {
+    const isInsideModal = modal.contains(event.target);
+    const isButton = event.target === btn;
+  
+    if (!isInsideModal && !isButton) {
+      modal.classList.remove('is-visible');
+    }
+  });
+
   const liDelete = document.createElement('li')
   const btnDeletePhrase = document.createElement('button')
   btnDeletePhrase.innerHTML = 'Excluir frase'
   btnDeletePhrase.classList.add('modal-button')
   liDelete.append(btnDeletePhrase)
-  liDelete.addEventListener('click', deletePhrase({
+  liDelete.addEventListener('click', () => deletePhrase({
     phraseId: id
   }))
-
-  const liChangePriority = document.createElement('li')
-  const btnChangePriority = document.createElement('button')
-  btnChangePriority.innerHTML = 'Mudar prioridade'
-  btnChangePriority.classList.add('modal-button')
-  liChangePriority.append(btnChangePriority)
 
   const liEdit = document.createElement('li')
   const btnEdit = document.createElement('button')
   btnEdit.innerHTML = 'Editar'
   btnEdit.classList.add('modal-button')
   liEdit.append(btnEdit)
+  liEdit.addEventListener('click', () => createModal())
 
   modal.append(liDelete)
-  modal.append(liChangePriority)
   modal.append(liEdit)
 
   return li
 }
 
+const modalOverlay = document.createElement('div');
+
+function createModal() {  
+  
+  modalOverlay.classList.add('modal-overlay');
+
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content');  
+
+  const DivCloseModal = document.createElement('div')
+  DivCloseModal.classList.add('closeModal')
+  DivCloseModal.innerHTML = 'X'
+  DivCloseModal.addEventListener('click',() => closeModal())
+  modalContent.append(DivCloseModal)
+
+  const title = document.createElement('h1');
+  title.textContent = 'Editar Frase';
+  modalContent.appendChild(title);
+
+  const input = document.createElement('input');
+  input.classList.add('modalInput');
+  input.placeholder = 'Edite a frase'
+  modalContent.appendChild(input);
+
+  const label = document.createElement('label')
+  label.innerHTML = 'Prioridade'
+  modalContent.append(label)
+  
+  const containerRadio = document.createElement('div');
+  containerRadio.classList.add('containerRadio')
+  modalContent.append(containerRadio)
+
+  const inputLow = document.createElement('input')
+  inputLow.type = 'radio'
+  inputLow.name = 'prioridade'
+  inputLow.value = 'low'
+  containerRadio.append(inputLow)
+  
+  const labelLow = document.createElement('label')
+  labelLow.innerHTML = 'Baixa'
+  containerRadio.append(labelLow)
+
+  const inputMedium = document.createElement('input')
+  inputMedium.type = 'radio'
+  inputMedium.name = 'prioridade'
+  inputMedium.value = 'low'
+  containerRadio.append(inputMedium)
+  
+  const labelMedium = document.createElement('label')
+  labelMedium.innerHTML = 'Média'
+  containerRadio.append(labelMedium)
+
+  const inputHigh = document.createElement('input')
+  inputHigh.type = 'radio'
+  inputHigh.name = 'prioridade'
+  inputHigh.value = 'low'
+  containerRadio.append(inputHigh)
+
+  const labelHigh = document.createElement('label')
+  labelHigh.innerHTML = 'Alta'
+  containerRadio.append(labelHigh)
+
+  const btnEdit = document.createElement('button')
+  btnEdit.innerHTML = 'Editar'
+  btnEdit.classList.add('btnModal')
+  modalContent.append(btnEdit)
+
+  modalOverlay.appendChild(modalContent);
+  document.body.appendChild(modalOverlay);
+}
+
+function closeModal() {
+  modalOverlay.style.display = "none"
+}
+  
 async function getPhrases() {
  try {
   const phrases = await listPhrases()
