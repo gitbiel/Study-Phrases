@@ -77,9 +77,7 @@ function createItem({ id, phrase, priority }) {
   btnDeletePhrase.innerHTML = 'Excluir frase'
   btnDeletePhrase.classList.add('modal-button')
   liDelete.append(btnDeletePhrase)
-  liDelete.addEventListener('click', () => deletePhrase({
-    phraseId: id
-  }))
+  liDelete.addEventListener('click', () => createModalDelete(id))
 
   const liEdit = document.createElement('li')
   const btnEdit = document.createElement('button')
@@ -94,11 +92,54 @@ function createItem({ id, phrase, priority }) {
   return li
 }
 
-const modalOverlay = document.createElement('div');
+const modalOverlayDelete = document.createElement('div');
+modalOverlayDelete.classList.add('modal-overlay');
+
+function createModalDelete( phraseId ) {
+  if (modalOverlayDelete.style.display === "none") {
+    modalOverlayDelete.style.display = "flex";
+    return;
+  }
+
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content-delete');  
+
+  const title = document.createElement('h1');
+  title.textContent = 'Tem certeza que deseja excluir frase ?';
+  modalContent.appendChild(title);
+
+  const divContainerBtn = document.createElement('div')
+  divContainerBtn.classList.add('divContainerBtn')
+  modalContent.append(divContainerBtn)
+
+  const btnCancel = document.createElement('button')
+  btnCancel.innerHTML = 'Cancelar'
+  btnCancel.classList.add('btnModalDelete')
+  btnCancel.addEventListener('click',() => closeModalDelete())
+  divContainerBtn.append(btnCancel)
+
+    
+  const btnConfirm = document.createElement('button')
+  btnConfirm.innerHTML = 'Confirmar'
+  btnConfirm.classList.add('btnModalDelete')
+  btnConfirm.addEventListener('click', () => deletePhrase({
+      phraseId: phraseId
+    }))
+    btnConfirm.addEventListener('click', () => closeModalDelete())
+    divContainerBtn.append(btnConfirm)
+
+  modalOverlayDelete.appendChild(modalContent);
+  document.body.appendChild(modalOverlayDelete);
+}
+
+const modalOverlayEdit = document.createElement('div');
+modalOverlayEdit.classList.add('modal-overlay');
 
 function createModal() {  
-  
-  modalOverlay.classList.add('modal-overlay');
+  if (modalOverlayEdit.style.display === "none") {
+    modalOverlayEdit.style.display = "flex";
+    return;
+  }
 
   const modalContent = document.createElement('div');
   modalContent.classList.add('modal-content');  
@@ -161,12 +202,16 @@ function createModal() {
   btnEdit.classList.add('btnModal')
   modalContent.append(btnEdit)
 
-  modalOverlay.appendChild(modalContent);
-  document.body.appendChild(modalOverlay);
+  modalOverlayEdit.appendChild(modalContent);
+  document.body.appendChild(modalOverlayEdit);
 }
 
 function closeModal() {
-  modalOverlay.style.display = "none"
+  modalOverlayEdit.style.display = "none"
+}
+
+function closeModalDelete() {
+  modalOverlayDelete.style.display = "none"
 }
   
 async function getPhrases() {

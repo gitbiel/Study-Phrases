@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Frase</title>
     <link rel="stylesheet" href="cadastrar.css">
+    <link rel="stylesheet" href="estilos-comuns.css">
     <script src="./http/client.js" defer></script>
     <script src="cadastrar.js" defer></script>
 </head>
 <body>
     <header class="header">
-      <h1 class="title">StudyPhrases</h1>
+      <h1>StudyPhrases</h1>
       <div class="hamburger-menu">
         <span></span>
         <span></span>
@@ -47,7 +48,7 @@
         <input id="radio3" type="radio" name="prioridade" value="high">
         <label for="radio3">Alta</label>
       </div>
-      <button disabled id="btnCriar" class="btnCriar" onclick="pegarDados(), limparFormulario()">Criar</button>
+      <button disabled id="btnCriar" class="btn" onclick="pegarDados(), limparFormulario()">Criar</button>
     </form>
   </main>
 </body>
