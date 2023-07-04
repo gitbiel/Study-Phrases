@@ -274,12 +274,14 @@ div input[type="radio"]:checked {
 
 .btnModalDelete {
   height: 40px;
-  width: 40%;
+  width: 40%; /*48*/
   border: 2px solid black;
   border-radius: 8px;
   font-size: large;
   cursor: pointer;
   background-color: #6e60bd;
+  text-align: center;
+  line-height: 40%; 
 }
 
 .divContainerBtn {

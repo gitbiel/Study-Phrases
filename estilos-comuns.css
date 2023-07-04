@@ -113,4 +113,5 @@ body {
 
 .btn:disabled {
   cursor: not-allowed;
+  background-color: #777777;
 }

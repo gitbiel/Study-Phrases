@@ -84,7 +84,7 @@ function createItem({ id, phrase, priority }) {
   btnEdit.innerHTML = 'Editar'
   btnEdit.classList.add('modal-button')
   liEdit.append(btnEdit)
-  liEdit.addEventListener('click', () => createModal())
+  liEdit.addEventListener('click', () => createModal(phrase, id, priority))
 
   modal.append(liDelete)
   modal.append(liEdit)
@@ -106,6 +106,10 @@ function createModalDelete( phraseId ) {
 
   const title = document.createElement('h1');
   title.textContent = 'Tem certeza que deseja excluir frase ?';
+  title.style.textAlign = 'center'
+  title.style.fontSize = 'x-large' // large
+  title.style.marginBottom = '10%'
+  
   modalContent.appendChild(title);
 
   const divContainerBtn = document.createElement('div')
@@ -135,14 +139,15 @@ function createModalDelete( phraseId ) {
 const modalOverlayEdit = document.createElement('div');
 modalOverlayEdit.classList.add('modal-overlay');
 
-function createModal() {  
-  if (modalOverlayEdit.style.display === "none") {
-    modalOverlayEdit.style.display = "flex";
-    return;
-  }
+function createModal(phrase, phraseId, priority) {  
+  // if (modalOverlayEdit.style.display === "none") {
+    // modalOverlayEdit.style.display = "flex";
+    // return;
+  // }
 
   const modalContent = document.createElement('div');
   modalContent.classList.add('modal-content');  
+  modalContent.id = 'modalContent'
 
   const DivCloseModal = document.createElement('div')
   DivCloseModal.classList.add('closeModal')
@@ -156,6 +161,8 @@ function createModal() {
 
   const input = document.createElement('input');
   input.classList.add('modalInput');
+  input.id = 'inputText'
+  input.value = phrase;
   input.placeholder = 'Edite a frase'
   modalContent.appendChild(input);
 
@@ -172,7 +179,7 @@ function createModal() {
   inputLow.name = 'prioridade'
   inputLow.value = 'low'
   containerRadio.append(inputLow)
-  
+ 
   const labelLow = document.createElement('label')
   labelLow.innerHTML = 'Baixa'
   containerRadio.append(labelLow)
@@ -180,7 +187,7 @@ function createModal() {
   const inputMedium = document.createElement('input')
   inputMedium.type = 'radio'
   inputMedium.name = 'prioridade'
-  inputMedium.value = 'low'
+  inputMedium.value = 'medium'
   containerRadio.append(inputMedium)
   
   const labelMedium = document.createElement('label')
@@ -190,7 +197,7 @@ function createModal() {
   const inputHigh = document.createElement('input')
   inputHigh.type = 'radio'
   inputHigh.name = 'prioridade'
-  inputHigh.value = 'low'
+  inputHigh.value = 'high'
   containerRadio.append(inputHigh)
 
   const labelHigh = document.createElement('label')
@@ -200,15 +207,33 @@ function createModal() {
   const btnEdit = document.createElement('button')
   btnEdit.innerHTML = 'Editar'
   btnEdit.classList.add('btnModal')
+  btnEdit.addEventListener('click', () => editar(input, phraseId))
+  btnEdit.addEventListener('click', () => closeModal())
   modalContent.append(btnEdit)
 
   modalOverlayEdit.appendChild(modalContent);
   document.body.appendChild(modalOverlayEdit);
+
+  if (priority === 'low') {
+    inputLow.checked = true;
+  } else if (priority === 'medium') {
+    inputMedium.checked = true;
+  } else if (priority === 'high') {
+    inputHigh.checked = true;
+  }
 }
 
-function closeModal() {
-  modalOverlayEdit.style.display = "none"
+function closeModal() {  
+  const modalContent = document.getElementById('modalContent');
+
+  while (modalContent.firstChild) {
+    modalContent.firstChild.remove();
+  }
+
+  modalOverlayEdit.remove();
+  modalContent.remove();
 }
+
 
 function closeModalDelete() {
   modalOverlayDelete.style.display = "none"
@@ -230,6 +255,22 @@ async function getPhrases() {
 }
 getPhrases()
 
+async function editar(phrase, phraseId) {
+  const inputChecked = document.querySelector('input[name="prioridade"]:checked')
+  try {
+    window.location.href = window.location.href;
+    
+    await editPhrase({
+      phrase: phrase.value,
+      priority: inputChecked.value,
+      phraseId
+    })
+    
+
+  } catch (error) {
+    console.log('error', error)
+  }
+}
 
 function openFilter() {
   pesquisar.style.display = "flex";
@@ -241,7 +282,7 @@ function openFilter() {
   purpleFilter.style.display = "flex";
 }
 
-function closedFilter() {
+function closeFilter() {
   pesquisar.style.display = "none";
   priority.style.display = "none";
   containerInputs.style.display = "none";
@@ -265,9 +306,3 @@ closeBtn.addEventListener('click', function() {
   hamburgerMenu.classList.remove('open');
   overlay.classList.remove('open');
 });
-
-
-
-
-
-
