@@ -3,7 +3,6 @@
 body {
   margin: 0;
   font-family: inter;
-  overflow-y: hidden;
 }
 
 .header {
@@ -89,7 +88,6 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #1f123d;
-  height: 90vh;
   padding: 14px;
 }
 

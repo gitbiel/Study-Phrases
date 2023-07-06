@@ -284,10 +284,7 @@ div input[type="radio"]:checked {
   line-height: 40%; 
 }
 
-.divContainerBtn {
-  display: flex;
-  justify-content: space-around;
-}
+
 
 .modal-content-delete {
   background-color: #EDEDED;

@@ -54,6 +54,8 @@ async function limparFormulario() {
 }
 
 async function pegarDados() {
+  swal("Bom trabalho!", "Frase criada com sucesso!", "success");
+  
   // valdar se os dados estao aqui antes de enviar para a api
   const inputChecked = document.querySelector('input[name="prioridade"]:checked')
   try {
@@ -67,8 +69,19 @@ async function pegarDados() {
     inputChecked.checked = false
 
   } catch (error) {
-    console.log('error', error)
+    console.log(error)
+    swal ( "Oops",  "A frase precisa de 3 caracteres no mínimo!" ,  "error" );
+
+   const isPhraseDuplicate = checkDuplicatePhrase(textarea.value);
+   console.log(isPhraseDuplicate)
   }
+}
+
+
+function checkDuplicatePhrase(phrase) {
+const lowerCasePhrase = phrase.toLowerCase();
+const isDuplicate = existingPhrases.some(existingPhrase => existingPhrase.toLowerCase() === lowerCasePhrase);
+return isDuplicate;
 }
 
 const hamburgerMenu = document.querySelector('.hamburger-menu');

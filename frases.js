@@ -10,6 +10,25 @@ const whiteFilter = document.getElementById("whiteFilter");
 const purpleFilter = document.getElementById("purpleFilter");
 const phrasesList = document.querySelector("ul.phrases")
 
+
+async function filter(phraseId) {
+  // valdar se os dados estao aqui antes de enviar para a api
+  // const inputChecked = document.querySelector('input[name="prioridade"]:checked')
+  // const inputPhrase = document.getElementById('pesquisar')
+    try {
+    
+    await listPhrases({
+      phrase: phraseId
+    })
+    // inputPhrase.value = ''
+    
+    // inputChecked.checked = false
+
+  } catch (error) {
+    console.log('error', error)
+  }
+}
+
 function createItem({ id, phrase, priority }) {
   const li = document.createElement('li')
   li.id = id
@@ -95,56 +114,38 @@ function createItem({ id, phrase, priority }) {
 const modalOverlayDelete = document.createElement('div');
 modalOverlayDelete.classList.add('modal-overlay');
 
-function createModalDelete( phraseId ) {
-  if (modalOverlayDelete.style.display === "none") {
-    modalOverlayDelete.style.display = "flex";
-    return;
-  }
+function createModalDelete(phraseId) {
+  swal({
+    title: "Você tem certeza ?",
+    text: "Uma vez excluído, você não poderá recuperar este arquivo !",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("Poof! Sua frase foi deletada!", {
+        icon: "success",
+      });
+    } else {
+      swal("Sua frase não foi apagada :)");
+    }
+  });
 
-  const modalContent = document.createElement('div');
-  modalContent.classList.add('modal-content-delete');  
+  const textModalDelete = document.getElementsByClassName("swal-text")[0]
+  textModalDelete.style.textAlign = "center"
+  console.log(textModalDelete)
 
-  const title = document.createElement('h1');
-  title.textContent = 'Tem certeza que deseja excluir frase ?';
-  title.style.textAlign = 'center'
-  title.style.fontSize = 'x-large' // large
-  title.style.marginBottom = '10%'
-  
-  modalContent.appendChild(title);
-
-  const divContainerBtn = document.createElement('div')
-  divContainerBtn.classList.add('divContainerBtn')
-  modalContent.append(divContainerBtn)
-
-  const btnCancel = document.createElement('button')
-  btnCancel.innerHTML = 'Cancelar'
-  btnCancel.classList.add('btnModalDelete')
-  btnCancel.addEventListener('click',() => closeModalDelete())
-  divContainerBtn.append(btnCancel)
-
-    
-  const btnConfirm = document.createElement('button')
-  btnConfirm.innerHTML = 'Confirmar'
-  btnConfirm.classList.add('btnModalDelete')
-  btnConfirm.addEventListener('click', () => deletePhrase({
+  const deleteButton = document.getElementsByClassName("swal-button swal-button--confirm swal-button--danger")[0];
+  deleteButton.addEventListener('click', () => deletePhrase({
       phraseId: phraseId
-    }))
-    btnConfirm.addEventListener('click', () => closeModalDelete())
-    divContainerBtn.append(btnConfirm)
-
-  modalOverlayDelete.appendChild(modalContent);
-  document.body.appendChild(modalOverlayDelete);
+    }))  
 }
 
 const modalOverlayEdit = document.createElement('div');
 modalOverlayEdit.classList.add('modal-overlay');
 
 function createModal(phrase, phraseId, priority) {  
-  // if (modalOverlayEdit.style.display === "none") {
-    // modalOverlayEdit.style.display = "flex";
-    // return;
-  // }
-
   const modalContent = document.createElement('div');
   modalContent.classList.add('modal-content');  
   modalContent.id = 'modalContent'

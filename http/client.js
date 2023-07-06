@@ -31,6 +31,9 @@ async function listPhrases() {
 }
 
 async function deletePhrase({ phraseId }) {
+  setTimeout(function() {
+    window.location.href = window.location.href;
+  }, 1000);
   return await client({ method: 'DELETE', path:`phrase/${ phraseId }`})
 }
 

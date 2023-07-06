@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="estilos-comuns.css">
     <script src="./http/client.js" defer></script>
     <script src="frases.js" defer></script>
+    <script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js " ></script> 
 </head>
 <body>
+
   <header class="header">
     <h1>StudyPhrases</h1>
     <div class="hamburger-menu">
@@ -61,7 +63,7 @@
       <input class="checked" id="radio3" type="radio" name="prioridade">
       <label for="radio3">Alta</label>
     </div>
-    <button  id="btnAplicar" class="btn">Aplicar</button>
+    <button onclick="filter()" id="btnAplicar" class="btn">Aplicar</button>
 
     <ul class="phrases"></ul>
 
