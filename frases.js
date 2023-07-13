@@ -10,22 +10,54 @@ const whiteFilter = document.getElementById("whiteFilter");
 const purpleFilter = document.getElementById("purpleFilter");
 const phrasesList = document.querySelector("ul.phrases")
 
+function filterInput() {
+  const phrases = document.querySelectorAll("phrases_line") 
+  const filter = pesquisar.value.toLowerCase();
 
-async function filter(phraseId) {
-  // valdar se os dados estao aqui antes de enviar para a api
-  // const inputChecked = document.querySelector('input[name="prioridade"]:checked')
-  // const inputPhrase = document.getElementById('pesquisar')
-    try {
-    
-    await listPhrases({
-      phrase: phraseId
-    })
-    // inputPhrase.value = ''
-    
-    // inputChecked.checked = false
+  let hasDisplayItem = false;
 
-  } catch (error) {
-    console.log('error', error)
+  const phrasesArray = Array.from(phrases);
+
+  phrasesArray.forEach((item) => {
+    const text = document.querySelector(".paragraph").textContent.toLowerCase();
+
+    if(text.includes(filter)) {
+      item.style.display = "";
+      hasDisplayItem =  true;
+    } else {
+      item.style.display = "none"
+    }
+  })
+}
+
+function filterPriority() {
+  const priorityInputs = document.querySelectorAll('input[name="priority"]:checked');
+  const searchInput = document.querySelector("#filter-input");
+  const listItems = document.querySelectorAll(".paragraph");
+  const containerImg = document.querySelector("#containerImg");
+
+  const filter = searchInput.value.toLowerCase();
+  let hasDisplayedItem = false;
+
+  listItems.forEach((item) => {
+    const text = item.querySelector(".phrases").textContent.toLowerCase();
+    const priorityChecked = item.querySelector(".border-color-phrases");
+
+    priorityInputs.forEach((input) => {
+      if (priorityChecked.classList.contains(`is-${input.value}`) && text.includes(filter)) {
+        item.style.display = "";
+        hasDisplayedItem = true;
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+
+  if (!hasDisplayedItem) {
+    containerImg.style.display = "flex";
+    containerSelect.style.display = "none"
+  } else {
+    containerImg.style.display = "none";
   }
 }
 
@@ -50,6 +82,7 @@ function createItem({ id, phrase, priority }) {
   li.append(prioridade)
 
   const paragraph = document.createElement('p')
+  paragraph.classList.add('paragraph')
   paragraph.innerHTML = phrase
   li.append(paragraph)
   
@@ -126,6 +159,7 @@ function createModalDelete(phraseId) {
     if (willDelete) {
       swal("Poof! Sua frase foi deletada!", {
         icon: "success",
+        buttons: false,
       });
     } else {
       swal("Sua frase não foi apagada :)");
@@ -134,7 +168,6 @@ function createModalDelete(phraseId) {
 
   const textModalDelete = document.getElementsByClassName("swal-text")[0]
   textModalDelete.style.textAlign = "center"
-  console.log(textModalDelete)
 
   const deleteButton = document.getElementsByClassName("swal-button swal-button--confirm swal-button--danger")[0];
   deleteButton.addEventListener('click', () => deletePhrase({
@@ -259,8 +292,10 @@ getPhrases()
 async function editar(phrase, phraseId) {
   const inputChecked = document.querySelector('input[name="prioridade"]:checked')
   try {
-    window.location.href = window.location.href;
-    
+    swal("Boa! Sua frase foi Editada!", {
+      icon: "success",
+      buttons: false,
+    });
     await editPhrase({
       phrase: phrase.value,
       priority: inputChecked.value,

@@ -33,10 +33,13 @@ async function listPhrases() {
 async function deletePhrase({ phraseId }) {
   setTimeout(function() {
     window.location.href = window.location.href;
-  }, 1000);
+  }, 1500);
   return await client({ method: 'DELETE', path:`phrase/${ phraseId }`})
 }
 
 async function editPhrase({ phrase, priority, phraseId }) {
+  setTimeout(function() {
+    window.location.href = window.location.href;
+  }, 1400);
   return await client({ method: 'PUT', body: { phrase, priority }, path:`phrase/${ phraseId }`})
 }
